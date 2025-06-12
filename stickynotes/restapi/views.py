@@ -4,7 +4,9 @@ from restapi.serializers import NoteSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from restapi.models import Note
+from drf_yasg.utils import swagger_auto_schema
 class NoteCR(APIView):
+    @swagger_auto_schema(request_body=NoteSerializer)
     def post(self,request):
         ser = NoteSerializer(data=request.data)
         if ser.is_valid():

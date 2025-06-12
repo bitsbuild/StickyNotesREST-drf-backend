@@ -2,7 +2,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k@--f08jw=dwx939jdi$p9auuwl+w(r3=ipmpcj98xe-sb-)(7'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'restapi',
+    'drf_yasg'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
