@@ -1,5 +1,6 @@
 from django.urls import path
-from restapi.views import NoteCRUD
+from restapi.views import NoteCR,NoteUD
 urlpatterns = [
-    path('crud/<uuid:id>/',NoteCRUD.as_view())
+    path('cr/',NoteCR.as_view()),
+    path('ud/<uuid:id>/',NoteUD.as_view())
 ]
