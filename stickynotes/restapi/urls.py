@@ -1,5 +1,5 @@
 from django.urls import path
-from restapi.views import NoteCUD
+from restapi.views import NoteCRUD
 urlpatterns = [
-    path('create-update-delete/<uuid:id>/',NoteCUD.as_view())
+    path('crud/<uuid:id>/',NoteCRUD.as_view())
 ]
