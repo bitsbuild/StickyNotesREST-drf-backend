@@ -18,8 +18,7 @@ class NoteCR(APIView):
             serialized_note_list = NoteSerializer(note_list,many=True)
             return Response(serialized_note_list.data,status=status.HTTP_200_OK)
         except Exception as e:
-            return Response(serialized_note_list.errors,status=status.HTTP_400_BAD_REQUEST)
-        
+            return Response(serialized_note_list.errors,status=status.HTTP_400_BAD_REQUEST)        
 class NoteUD(APIView):
         def put(self,request,id):
             toupdate_note = Note.objects.get(pk=id)
@@ -35,3 +34,27 @@ class NoteUD(APIView):
                 return Response({"status":"selected item deleted"},status=status.HTTP_200_OK)
             except Exception as e:
                 return Response({"status":"deletion process failed"},status=status.HTTP_400_BAD_REQUEST)
+class SearchByTitle(APIView):
+    def get(self,request,title):
+        try:
+            notes = Note.objects.filter(note_title__icontains=title)
+            ser_notes = NoteSerializer(notes,many=True)
+            return Response(ser_notes.data,status=status.HTTP_200_OK)
+        except:
+            return Response(ser_notes.errors,status=status.HTTP_400_BAD_REQUEST)
+class SearchByContent(APIView):
+    def get(self,request,content):
+        try:
+            notes = Note.objects.filter(note_body__icontains=content)
+            ser_notes = NoteSerializer(notes,many=True)
+            return Response(ser_notes.data,status=status.HTTP_200_OK)
+        except:
+            return Response(ser_notes.errors,status=status.HTTP_400_BAD_REQUEST)
+class FilterByTags(APIView):
+    def get(self,request,tag):
+        try:
+            notes = Note.objects.filter(note_tags__icontains=tag)
+            ser_notes = NoteSerializer(notes,many=True)
+            return Response(ser_notes.data,status=status.HTTP_200_OK)
+        except:
+            return Response(ser_notes.errors,status=status.HTTP_400_BAD_REQUEST)
