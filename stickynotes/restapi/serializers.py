@@ -5,8 +5,6 @@ class NoteSerializer(serializers.Serializer):
     note_title = serializers.CharField()
     note_body = serializers.CharField()
     note_tags = serializers.JSONField()
-    def __str__(self):
-        return self.name
     def create(self, validated_data):
         return Note.objects.create(**validated_data)
     def update(self, instance, validated_data):
