@@ -5,3 +5,4 @@ class Note(models.Model):
     note_title = models.CharField(max_length=70)
     note_body = models.CharField(max_length=210)
     note_tags = models.JSONField(default=list)
+    
